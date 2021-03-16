@@ -13,7 +13,7 @@ resource "google_compute_network" "vpc" {
 
 resource "google_compute_subnetwork" "subnet" {
   name          = "${var.vpc_name}-subnet"
-  project      = var.project_id
+  project       = var.project_id
   ip_cidr_range = var.subnet_range
   region        = var.region
   network       = google_compute_network.vpc.id
@@ -24,7 +24,7 @@ resource "google_compute_subnetwork" "subnet" {
 # NAT instance default route
 resource "google_compute_route" "default" {
   name             = "${var.vpc_name}-default-tagged"
-  project      = var.project_id
+  project          = var.project_id
   dest_range       = "0.0.0.0/0"
   network          = google_compute_network.vpc.name
   next_hop_gateway = "default-internet-gateway"
