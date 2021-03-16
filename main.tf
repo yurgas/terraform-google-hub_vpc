@@ -22,7 +22,7 @@ resource "google_compute_subnetwork" "subnet" {
 }
 
 # Explicit default route for VPC spoke interconnection
-resource "google_compute_route" "default" {
+resource "google_compute_route" "default-backup" {
   name             = "${var.vpc_name}-default-backup-route"
   project          = var.project_id
   dest_range       = "0.0.0.0/0"
