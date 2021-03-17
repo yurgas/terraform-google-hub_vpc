@@ -21,16 +21,6 @@ resource "google_compute_subnetwork" "subnet" {
   private_ip_google_access = true
 }
 
-# Explicit default route for VPC spoke interconnection
-resource "google_compute_route" "default-backup" {
-  name             = "${var.vpc_name}-default-backup-route"
-  project          = var.project_id
-  dest_range       = "0.0.0.0/0"
-  network          = google_compute_network.vpc.name
-  next_hop_ip      = cidrhost(var.subnet_range, 1)
-  priority         = 10000
-}
-
 # NAT instance default route
 resource "google_compute_route" "default" {
   name             = "${var.vpc_name}-default-tagged"
